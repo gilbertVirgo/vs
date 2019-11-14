@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Quicksand&display=swap');
+
+body {
+    margin: 0;
+}
+
+.container { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    .count {
+        font-family: "Quicksand", sans-serif;
+        position: absolute;
+        margin: 0;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .arrow {
+        margin: 0 20px;
+        align-self: middle;
+        font-size: 48px;
+        font-family: "Quicksand", sans-serif
+    }
+
+    .verse-wrapper {
+        position: relative;
+        max-width: 600px;
+        padding: 15px;
+        box-sizing: border-box;
+        
+        .verse {
+            font-size: 22px;
+            font-family: "Quicksand", sans-serif;
+        }
+    
+        .ref {
+            font-size: 22px;
+            font-family: "Bebas Neue", sans-serif;
+    
+            font-weight: bold;
+            text-align: right;
+        }
+    }
+}
