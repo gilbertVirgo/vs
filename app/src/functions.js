@@ -26,7 +26,7 @@ export const getData = async (index) => {
         const req = await fetch(
             `https://api.esv.org/v3/passage/text/?${params.toString()}`, {
                 headers: {
-                    "Authorization": "Token c0721f56900b2524d7d221ea7ccee8885af2173d"
+                    "Authorization": "Token " + process.env.REACT_APP_BIBLE_API_KEY
                 }
             });
         const {passages, query} = await req.json();
