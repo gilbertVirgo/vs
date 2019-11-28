@@ -14,8 +14,9 @@ const test = () => {
 		.then(message => console.log(message.sid));
 }
 
-const send = async ({to, body}) => {
-	const message = await client.messages.create({
+// await
+const send = ({to, body}) => {
+	const message = client.messages.create({
 		to, body,
 		from: TWILIO_FROM
 	});

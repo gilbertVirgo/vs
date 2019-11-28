@@ -1,22 +1,29 @@
 require("dotenv").config();
+const path = require("path");
+
+const fs = require("fs").promises;
+const com = require("./server/com");
+
+const init = async () => {
+    const verses = JSON.parse(await fs.readFile(path.join(__dirname, "server", "verses.json"), "utf-8"));
+    const profiles = JSON.parse(await fs.readFile(path.join(__dirname, "server", "profiles.json"), "utf-8"));
+
+    com.init({verses, profiles});
+}
 
 const express = require("express");
-const app = express();
+const server = express();
 
-const sms = require("./sms");
-//sms.test();
+server.use(express.static(path.join(__dirname, 'build')));
 
-const verses = require("./verses");
-
-const now = new Date();
-const firstMS = (new Date(now.getFullYear(), 0, 1, 0, 0, 0, 0)).getTime();
-const lastMS = (new Date(now.getFullYear(), 11, 31, 23, 59, 59, 999)).getTime();
-const yearMS = lastMS - firstMS;
-const increment = yearMS / verses.length;
-
-setTimeout(() => {
-    
-}, increment);
+server.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const {PORT} = process.env;
-app.listen(PORT, () => console.log(`Starting server on port ${PORT}`));
+server.listen(PORT, () => {
+    init();
+    console.log(`Starting server on port ${PORT}`)
+});
+
+// TODO: test!
