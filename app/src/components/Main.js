@@ -22,7 +22,7 @@ const Main = () => {
     }
 
     const handleNext = () => {
-        if(index < 100) setIndex(index + 1);
+        if(index < 99) setIndex(index + 1);
     }
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const Main = () => {
         <main style={{color: theme.current.dark}}>
             <div className="container" style={{backgroundColor: theme.current.light}}>
                 <p className="arrow" onClick={handlePrev}>&lsaquo;</p>
-                <p className="count">{index}/100</p>
+                <p className="count">{index+1}/100</p>
                 <div className="verse-wrapper">
                     <p className="verse">
                         {verse}
