@@ -1,10 +1,11 @@
+// Man this is so dumb! Need to build a quick API for this
 export const getPerc = () => {
     const now = new Date();
     const first = (new Date(now.getFullYear(), 0, 1, 0, 0, 0, 0)).getTime();
     const last = (new Date(now.getFullYear(), 11, 31, 23, 59, 59, 999)).getTime();
     const length = last - first;
 
-    return Math.floor(((now.getTime() - first) / length) * 100);
+    return Math.ceil(((now.getTime() - first) / length) * 100);
 }
 
 export const getData = async (index) => {

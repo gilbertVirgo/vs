@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from "react";
-import { useSwipeable, Swipeable } from 'react-swipeable';
+import { Swipeable } from 'react-swipeable';
 
 import {getPerc, getData} from "../functions";
 
