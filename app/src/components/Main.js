@@ -1,4 +1,5 @@
 import React, {useRef, useState, useEffect} from "react";
+import { useSwipeable, Swipeable } from 'react-swipeable';
 
 import {getPerc, getData} from "../functions";
 
@@ -40,19 +41,23 @@ const Main = () => {
 
     return (
         <main style={{color: theme.current.dark}}>
-            <div className="container" style={{backgroundColor: theme.current.light}}>
-                <p className="arrow" onClick={handlePrev}>&lsaquo;</p>
-                <p className="count">{index}/100</p>
-                <div className="verse-wrapper">
-                    <p className="verse">
-                        {verse}
-                    </p>
-                    <p className="ref">
-                        {ref}
-                    </p>
+            <Swipeable 
+                onSwipedLeft={handleNext} 
+                onSwipedRight={handlePrev}>
+                <div className="container" style={{backgroundColor: theme.current.light}}>
+                    <p className="arrow" onClick={handlePrev}>&lsaquo;</p>
+                    <p className="count">{index}/100</p>
+                    <div className="verse-wrapper">
+                        <p className="verse">
+                            {verse}
+                        </p>
+                        <p className="ref">
+                            {ref}
+                        </p>
+                    </div>
+                    <p className="arrow" onClick={handleNext}>&rsaquo;</p>
                 </div>
-                <p className="arrow" onClick={handleNext}>&rsaquo;</p>
-            </div>
+            </Swipeable>
         </main>
     )
 }
