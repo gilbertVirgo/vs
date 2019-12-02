@@ -1,9 +1,16 @@
 [
-    {
-        "firstname": "Gilbert",
-        "lastname": "Virgo",
-        "phone": "+447397543132",
-        "email": "gilbertjvirgo@gmail.com",
-        "useSMS": true
-    }
+  {
+    "firstname": "Gilbert",
+    "lastname": "Virgo",
+    "phone": "+447397543132",
+    "email": "gilbertjvirgo@gmail.com",
+    "useSMS": true
+  },
+  {
+    "firstname": "Neil",
+    "lastname": "Scott",
+    "phone": "+447887820745",
+    "email": "neiltscott@gmail.com",
+    "useSMS": true
+  }
 ]
