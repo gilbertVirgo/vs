@@ -5,7 +5,7 @@ export const getPerc = () => {
     const last = (new Date(now.getFullYear(), 11, 31, 23, 59, 59, 999)).getTime();
     const length = last - first;
 
-    return Math.ceil(((now.getTime() - first) / length) * 100);
+    return Math.floor(((now.getTime() - first) / length) * 100);
 }
 
 export const getData = async (index) => {

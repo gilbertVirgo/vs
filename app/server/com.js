@@ -15,14 +15,14 @@ const getPerc = () => {
     const firstMS = (new Date(now.getFullYear(), 0, 1, 0, 0, 0, 0)).getTime();
     const lengthMS = getLengthOfYear();
 
-    return Math.ceil(((now.getTime() - firstMS) / lengthMS) * 100);
+    return Math.floor(((now.getTime() - firstMS) / lengthMS) * 100);
 }
 
 const getMSUntilNextTick = () => {
     const now = new Date();
     const firstMS = (new Date(now.getFullYear(), 0, 1, 0, 0, 0, 0)).getTime();
     const percentile = getLengthOfYear() / 100;
-    const percentage = getPerc();
+    const percentage = getPerc() + 1;
     
     return (percentile * percentage) - (now - firstMS);
 }
@@ -45,7 +45,8 @@ const dispatch = ({verses, profiles}) => {
 const init = async ({verses, profiles}) => {
     const lengthMS = getLengthOfYear();
 
-    dispatch({verses, profiles});
+    // Test
+    //dispatch({verses, profiles});
 
     setTimeout(() => {
         setInterval(() => dispatch({verses, profiles}), lengthMS / verses.length);
