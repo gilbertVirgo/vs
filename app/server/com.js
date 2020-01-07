@@ -13,8 +13,8 @@ const dispatch = ({verses, profiles}) => {
         // } else {
         //     // TODO: email
         // }
-        
-        exec(`bash ${__dirname}/dispatch.sh`);
+
+        exec(`bash ${__dirname}/dispatch.sh ${verse}`);
     });
 }
 
