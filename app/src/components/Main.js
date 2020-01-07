@@ -7,13 +7,13 @@ import randomColor from "random-color";
 
 import "../style/main.scss";
 
+import getDayOfYear from "date-fns/getDayOfYear";
+
 const Main = () => {
     const [verse, setVerse] = useState(null);
     const [ref, setRef] = useState(null);
 
-    const today = new Date();
-
-    const [index, setIndex] = useState(today.getDate() - 1);
+    const [index, setIndex] = useState(getDayOfYear(new Date()));
 
     const theme = useRef({
         dark: randomColor(0.30, 0.25).hexString(),
