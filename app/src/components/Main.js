@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from "react";
 import { Swipeable } from 'react-swipeable';
 
-import {getPerc, getData} from "../functions";
+import {getVerse} from "../functions";
 
 import randomColor from "random-color";
 
@@ -11,7 +11,9 @@ const Main = () => {
     const [verse, setVerse] = useState(null);
     const [ref, setRef] = useState(null);
 
-    const [index, setIndex] = useState(getPerc());
+    const today = new Date();
+
+    const [index, setIndex] = useState(today.getDate() - 1);
 
     const theme = useRef({
         dark: randomColor(0.30, 0.25).hexString(),
@@ -23,19 +25,19 @@ const Main = () => {
     }
 
     const handleNext = () => {
-        if(index < 99) setIndex(index + 1);
+        if(index < 364) setIndex(index + 1);
     }
 
     useEffect(() => {
         (async function() {
-            const {passages, query, error} = await getData(index);
+            const text = await getVerse(index);
+            const split = text.lastIndexOf(". ");
 
-            if(passages && query) {
-                setVerse(passages.join(""));
-                setRef(query);
-            } else {
-                console.error(error);
-            }
+            let verse = text.slice(0, split + 1);
+            let ref = text.slice(split + 2, -1);
+
+            setVerse(verse);
+            setRef(ref);
         })();
     }, [index]);
 
@@ -46,7 +48,7 @@ const Main = () => {
                 onSwipedRight={handlePrev}>
                 <div className="container" style={{backgroundColor: theme.current.light}}>
                     <p className="arrow" onClick={handlePrev}>&lsaquo;</p>
-                    <p className="count">{index + 1}/100</p>
+                    <p className="count">{index + 1}/365</p>
                     <div className="verse-wrapper">
                         <p className="verse">
                             {verse}
