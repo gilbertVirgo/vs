@@ -5,21 +5,33 @@ const {exec} = require("child_process");
 const dispatch = ({verses}) => {
     const day = getDayOfYear(new Date());
     const verse = verses[day];
-
-    exec(`bash ${__dirname}/dispatch.sh ${verse}`);
+    
+    exec(`bash ${__dirname}/dispatch.sh "${verse}"`, (error, stdout, stderr) => {
+        if(error) {
+            console.log(error);
+        } else {
+            console.log(stdout);
+        }
+    });
+    console.log(`Verse dispatched... (${verse})`);
 }
 
-const init = async ({verses, profiles}) => {
+const init = async ({verses}) => {
     const delay = () => {
         let today = new Date();
         let tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 6);
 
-        return differenceInMilliseconds(today, tomorrow);
+        return differenceInMilliseconds(tomorrow, today);
     }
 
     setTimeout(() => {
-        setInterval(() => dispatch({verses, profiles}), delay());
+        setInterval(() => {
+            console.log(delay());
+            dispatch({verses})
+        }, delay());
     }, delay());
+
+    dispatch({verses});
 }
 
 module.exports = {init};
